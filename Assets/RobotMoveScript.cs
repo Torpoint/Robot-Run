@@ -19,5 +19,13 @@ public class RobotMoveScript : MonoBehaviour
         {
             myRigidBody.velocity = Vector2.up * jumpStrength;
         }
+        if (Input.GetKeyDown(KeyCode.D) == true)
+        {
+            myRigidBody.velocity = Vector2.right * jumpStrength;
+        }
+        if (Input.GetKeyDown(KeyCode.A) == true)
+        {
+            myRigidBody.velocity = Vector2.left * jumpStrength;
+        }
     }
 }
