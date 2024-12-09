@@ -9,6 +9,7 @@ public class LogicScript : MonoBehaviour
     public int playerScore;
     public Text scoreText;
     public GameObject gameOverScreen;
+    public GameObject gameWinScreen;
 
     public void addScore(int scoreToAdd)
     {
@@ -26,15 +27,8 @@ public class LogicScript : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void winGame()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameWinScreen.SetActive(true);
     }
 }

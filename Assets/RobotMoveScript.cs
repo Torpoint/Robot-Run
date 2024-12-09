@@ -17,9 +17,16 @@ public class RobotMoveScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Lose Game
         if (other.tag == "Enemy")
         {
             logic.gameOver();
+            robotIsAlive = false;
+        }
+        // Win Game
+        if (other.tag == "Win")
+        {
+            logic.winGame();
             robotIsAlive = false;
         }
     }

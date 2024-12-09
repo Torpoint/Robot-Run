@@ -15,7 +15,6 @@ public class EnemyRobotScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move the Goomba in the current direction
         rb.velocity = new Vector2(movementDirection.x * moveSpeed, rb.velocity.y);
     }
 
@@ -34,11 +33,5 @@ public class EnemyRobotScript : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
