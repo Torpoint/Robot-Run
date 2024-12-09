@@ -6,26 +6,48 @@ public class RobotMoveScript : MonoBehaviour
 {
     public Rigidbody2D myRigidBody;
     public float jumpStrength;
-    // Start is called before the first frame update
+    public float moveSpeed = 5f;
+    public LogicScript logic;
+    public bool robotIsAlive = true;
+
     void Start()
     {
-        
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
     }
 
-    // Update is called once per frame
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            logic.gameOver();
+            robotIsAlive = false;
+        }
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) == true)
+        // Jumping
+        if (Input.GetKeyDown(KeyCode.Space) == true && robotIsAlive == true)
         {
             myRigidBody.velocity = Vector2.up * jumpStrength;
         }
-        if (Input.GetKeyDown(KeyCode.D) == true)
+        //if (Input.GetKeyDown(KeyCode.D) == true)
+        //{
+        //    myRigidBody.velocity = Vector2.right * jumpStrength;
+        //}
+        //if (Input.GetKeyDown(KeyCode.A) == true)
+        //{
+        //    myRigidBody.velocity = Vector2.left * jumpStrength;
+        //}
+
+        //Left & Right Movement
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        Vector3 movement = new Vector3(horizontalInput, 0f, 0f) * moveSpeed;
+
+        if (robotIsAlive == true)
         {
-            myRigidBody.velocity = Vector2.right * jumpStrength;
-        }
-        if (Input.GetKeyDown(KeyCode.A) == true)
-        {
-            myRigidBody.velocity = Vector2.left * jumpStrength;
+            transform.position += movement;
         }
     }
 }
